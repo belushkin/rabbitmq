@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
         zlib1g-dev \
         libxml2-dev \
         zlib1g-dev \
+        supervisor \
+        nano \
         librabbitmq-dev \
         libzip-dev
 
@@ -28,6 +30,8 @@ RUN docker-php-ext-enable amqp
 
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
+ADD messenger-worker.conf /etc/supervisor/conf.d/
 
 # Memory Limit
 #RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
